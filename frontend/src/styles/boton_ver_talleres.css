@@ -1,0 +1,22 @@
+/* botones.css */
+
+/* Botón Ver Más Programas */
+.ver-programas-button {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  color: #4b0000; /* texto tinto */
+  background: linear-gradient(to right, #ffd700, #fbbf24); /* dorado degradado */
+  border-radius: 9999px; /* redondeado completo */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid #fff; /* borde blanco */
+}
+
+.ver-programas-button:hover {
+  background: linear-gradient(to right, #fbbf24, #ffd700);
+  transform: scale(1.05);
+  color: #4b0000;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}

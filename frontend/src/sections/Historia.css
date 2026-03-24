@@ -1,0 +1,244 @@
+/* ===== LÍNEA DEL TIEMPO VERTICAL ===== */
+
+.historia-seccion {
+  background: linear-gradient(180deg, #f9f6f0 0%, #ffffff 100%);
+  padding: 5rem 2rem;
+  overflow: hidden;
+}
+
+.historia-encabezado {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.historia-etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.historia-titulo {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #800020;
+  margin: 0 0 1rem;
+}
+
+.historia-descripcion {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* Contenedor de la timeline */
+.historia-timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Línea vertical central */
+.historia-linea-central {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #d4af37, #800020, #d4af37);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+/* Fila de evento */
+.historia-fila {
+  display: grid;
+  grid-template-columns: 1fr 140px 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  min-height: 160px;
+}
+
+/* Lados */
+.historia-lado {
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.historia-lado.derecha,
+.historia-lado.con-card:last-child {
+  justify-content: flex-start;
+}
+
+.historia-lado.izquierda,
+.historia-lado.con-card:first-child {
+  justify-content: flex-end;
+}
+
+.historia-lado.vacio {
+  /* lado vacío, nada que mostrar */
+}
+
+/* Card de evento */
+.historia-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  max-width: 340px;
+  box-shadow: 0 6px 24px rgba(128, 0, 32, 0.12);
+  border-top: 4px solid #800020;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.historia-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background-color: #d4af37;
+}
+
+/* Flecha del lado derecho → apunta a la izquierda (hacia el nodo) */
+.historia-lado.con-card:first-child .historia-card::before {
+  right: -30px;
+}
+
+/* Flecha del lado izquierdo → apunta a la derecha (hacia el nodo) */
+.historia-lado.con-card:last-child .historia-card::before {
+  left: -30px;
+}
+
+.historia-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(128, 0, 32, 0.2);
+}
+
+.historia-card-icono {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+.historia-card-titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4b1d24;
+  margin: 0 0 0.5rem;
+}
+
+.historia-card-desc {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Nodo central con año */
+.historia-nodo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.historia-circulo-anio {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #800020, #4b1d24);
+  border: 4px solid #d4af37;
+  box-shadow: 0 4px 16px rgba(128, 0, 32, 0.4), 0 0 0 6px rgba(212, 175, 55, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.historia-circulo-anio:hover {
+  transform: scale(1.1);
+}
+
+.historia-circulo-anio span {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #d4af37;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ===== RESPONSIVE: colapsa a una sola columna ===== */
+@media (max-width: 768px) {
+  .historia-fila {
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: auto;
+    min-height: unset;
+    margin-bottom: 1.5rem;
+  }
+
+  .historia-linea-central {
+    left: 25px;
+    transform: none;
+  }
+
+  /* El lado vacío siempre desaparece */
+  .historia-lado.vacio {
+    display: none;
+  }
+
+  /* El nodo va en columna 1 */
+  .historia-nodo {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    padding-top: 0.5rem;
+  }
+
+  .historia-circulo-anio {
+    width: 50px;
+    height: 50px;
+    border-width: 3px;
+  }
+
+  .historia-circulo-anio span {
+    font-size: 0.65rem;
+  }
+
+  /* La card siempre en columna 2 */
+  .historia-lado.con-card {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-start;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+  }
+
+  .historia-card {
+    max-width: 100%;
+  }
+
+  .historia-card::before {
+    display: none;
+  }
+
+  /* Reubicar el lado con-card que estaba en columna 1 (los items "izquierda") */
+  .historia-fila.izquierda .historia-lado.con-card {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .historia-fila.izquierda .historia-nodo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

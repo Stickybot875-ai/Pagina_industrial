@@ -1,0 +1,33 @@
+.txtimg-container {
+  width: 20rem;
+  background-color: #f6f6f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.txt-body {
+  padding: 1rem;
+  text-align: center;
+}
+
+.txt-titulo {
+  font-size: 1.25rem; /* similar a Bootstrap fs-5 */
+  font-weight: 500; /* medium */
+  color: #342847;
+  margin: 0.5rem 0;
+}
+
+.txt-texto {
+  font-size: 1.5rem; /* similar a Bootstrap fs-4 */
+  font-weight: 600; /* semibold */
+  color: #342847;
+  margin: 0.5rem 0;
+}
+
+.txt-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem 0.5rem 0 0;
+}

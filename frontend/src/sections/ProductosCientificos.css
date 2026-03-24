@@ -1,0 +1,118 @@
+/* ===== PRODUCTOS CIENTÍFICOS — Paleta original tinto/dorado ===== */
+.productos-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.productos-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.productos-tab {
+  padding: 8px 22px;
+  border: 2px solid #800020;
+  background: #ffffff;
+  color: #800020;
+  border-radius: 30px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.2s ease;
+}
+
+.productos-tab:hover {
+  background-color: #f9eded;
+}
+
+.productos-tab.activa {
+  background-color: #800020;
+  color: #d4af37;
+  border-color: #800020;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.producto-card {
+  display: flex;
+  gap: 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 12px rgba(128, 0, 32, 0.08);
+  border: 1px solid #ead8d8;
+  border-left: 4px solid #800020;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.producto-card:hover {
+  box-shadow: 0 8px 24px rgba(128, 0, 32, 0.15);
+  transform: translateY(-3px);
+}
+
+.producto-icono {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.producto-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.producto-titulo {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4b1d24;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.producto-autores,
+.producto-año {
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0;
+}
+
+.producto-autores strong,
+.producto-año strong {
+  color: #4b1d24;
+}
+
+.producto-resumen {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.5;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.producto-btn {
+  align-self: flex-start;
+  padding: 6px 18px;
+  background-color: #800020;
+  color: #d4af37;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.2s ease;
+}
+
+.producto-btn:hover {
+  background-color: #4b1d24;
+}
+
+@media (max-width: 580px) {
+  .productos-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,228 @@
+/* ===== ESTILOS COMPARTIDOS PARA PÁGINAS INTERNAS ===== */
+
+.pagina-main {
+  padding-top: 130px;
+  min-height: 100vh;
+  background-color: #f9f6f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hero con imagen de fondo */
+.pagina-hero {
+  position: relative;
+  height: 320px;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Hero con imagen de edificio */
+.pagina-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(75, 29, 36, 0.9) 0%, rgba(128, 0, 32, 0.5) 60%, transparent 100%);
+  z-index: 1;
+}
+
+/* Hero sólido (sin imagen) */
+.pagina-hero-solid {
+  background: linear-gradient(135deg, #800020 0%, #4b1d24 100%) !important;
+  height: 260px;
+}
+
+.pagina-hero-solid::before {
+  display: none;
+}
+
+.pagina-hero-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 3rem;
+  width: 100%;
+}
+
+.pagina-hero-etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.pagina-hero-titulo {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.pagina-hero-sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* Contenido principal */
+.pagina-contenido {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+
+.pagina-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.pagina-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pagina-badge {
+  background-color: #d4af37;
+  color: #4b1d24;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.pagina-subtitulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #800020;
+  margin-bottom: 1.25rem;
+}
+
+.pagina-texto {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+/* Stats */
+.pagina-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.pagina-stat {
+  background: #ffffff;
+  padding: 2rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pagina-stat strong {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #800020;
+}
+
+.pagina-stat span {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Eventos grid */
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.evento-tarjeta {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  border-left: 5px solid #800020;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.evento-tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.evento-tipo {
+  display: inline-block;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.evento-nombre {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 0.6rem;
+  line-height: 1.4;
+}
+
+.evento-ponente {
+  font-size: 0.85rem;
+  color: #800020;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+
+.evento-meta {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0 0 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .pagina-hero-titulo {
+    font-size: 2rem;
+  }
+
+  .pagina-hero-overlay {
+    padding: 1.5rem;
+  }
+
+  .pagina-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .pagina-main {
+    padding-top: 100px;
+  }
+
+  .pagina-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .pagina-card {
+    padding: 1.5rem;
+  }
+
+  .eventos-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,105 @@
+/* ===== HORARIO DOCENTES — Paleta original tinto/dorado ===== */
+.horario-wrapper {
+  overflow-x: auto;
+}
+
+.horario-table-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 14px rgba(128, 0, 32, 0.1);
+}
+
+.horario-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 600px;
+}
+
+.horario-table thead tr {
+  background: linear-gradient(135deg, #800020, #4b1d24);
+  color: #ffffff;
+}
+
+.horario-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.horario-table th:first-child {
+  color: #d4af37;
+}
+
+.horario-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.horario-table tbody tr:hover {
+  background-color: #f9eded !important;
+}
+
+.fila-par  { background-color: #ffffff; }
+.fila-impar { background-color: #f9f6f0; }
+
+.docente-celda {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 12px 16px;
+  min-width: 220px;
+}
+
+.docente-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.docente-nombre {
+  font-weight: 600;
+  color: #4b1d24;
+  font-size: 0.875rem;
+}
+
+.horario-celda {
+  padding: 10px 16px;
+  vertical-align: middle;
+  text-align: center;
+  border-left: 1px solid #ead8d8;
+}
+
+.horario-slot {
+  display: inline-block;
+  background-color: #faf0f0;
+  color: #800020;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid #e8c0c0;
+  white-space: nowrap;
+}
+
+.horario-libre {
+  color: #cccccc;
+  font-size: 1rem;
+}
+
+.horario-nota {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 1rem;
+  font-style: italic;
+}

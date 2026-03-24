@@ -1,0 +1,37 @@
+/* ===== HOME ===== */
+.home-main {
+  padding-top: 130px;
+}
+
+.ponentes-seccion {
+  background-color: #f9f6f0;
+}
+
+.home-seccion-header {
+  text-align: center;
+  padding: 3rem 1rem 0;
+}
+
+.home-seccion-etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #d4af37;
+  margin-bottom: 0.4rem;
+}
+
+.home-seccion-titulo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #800020;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .home-main { padding-top: 110px; }
+}
+
+@media (max-width: 600px) {
+  .home-main { padding-top: 95px; }
+}

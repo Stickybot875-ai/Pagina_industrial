@@ -1,0 +1,49 @@
+/* ===== RESET Y BASE — Paleta original tinto/dorado ===== */
+:root {
+  --tinto: #800020;
+  --tinto-oscuro: #4b1d24;
+  --dorado: #d4af37;
+  --dorado-hover: #b9972a;
+  --crema: #f9f6f0;
+  --blanco: #ffffff;
+  --texto: #4b1d24;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f6f0;
+  color: #4b1d24;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body {
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}

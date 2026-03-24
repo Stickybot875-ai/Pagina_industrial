@@ -1,0 +1,132 @@
+/* ===== HEADER — Paleta original tinto/dorado ===== */
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Barra superior */
+.header-topbar {
+  background-color: #4b1d24;
+  color: #d4af37;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Barra de logos */
+.header-logos {
+  background-color: #ffffff;
+  border-bottom: 3px solid #d4af37;
+  display: flex;
+  align-items: center;
+  padding: 6px 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header-logo-main {
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-logo-pleca {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  flex: 1;
+  max-width: 280px;
+}
+
+.header-logo-tecnm {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Navbar */
+.header-nav {
+  background-color: #800020;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header-nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.header-nav-links li a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 13px 16px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-nav-links li a:hover {
+  background-color: #4b1d24;
+  color: #d4af37;
+}
+
+.header-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .header-hamburger {
+    display: block;
+  }
+
+  .header-nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #800020;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  .header-nav-links.open {
+    display: flex;
+  }
+
+  .header-logo-pleca {
+    display: none;
+  }
+
+  .header-logos {
+    padding: 6px 1rem;
+  }
+}

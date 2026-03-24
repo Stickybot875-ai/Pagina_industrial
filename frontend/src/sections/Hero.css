@@ -1,0 +1,245 @@
+/* ===== HERO — Paleta original tinto/dorado ===== */
+
+.hero-section {
+  background-color: #f9f6f0;
+}
+
+/* ——— Banner con imagen del edificio ——— */
+.hero-banner {
+  position: relative;
+  height: 520px;
+  background: url('/logos/P_a_aguascalientes2.jpg') center center / cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(75, 29, 36, 0.92) 0%,
+    rgba(128, 0, 32, 0.65) 45%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+}
+
+.hero-banner-contenido {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 3rem;
+}
+
+.hero-banner-etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #d4af37;
+  margin-bottom: 0.75rem;
+}
+
+.hero-banner-titulo {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+  line-height: 1.15;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hero-banner-sub {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.hero-banner-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-badge {
+  background-color: #d4af37;
+  color: #4b1d24;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+/* ——— Descripción del departamento ——— */
+.hero-descripcion-wrapper {
+  background-color: #ffffff;
+  padding: 3.5rem 2rem;
+}
+
+.hero-descripcion-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.hero-seccion-etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.hero-seccion-titulo {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #800020;
+  margin: 0 0 1.5rem;
+  line-height: 1.25;
+}
+
+.hero-parrafo {
+  font-size: 0.95rem;
+  color: #4b1d24;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.hero-parrafo strong {
+  color: #800020;
+  font-weight: 700;
+}
+
+.hero-imagen-lateral {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-imagen-lateral img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 30px rgba(128, 0, 32, 0.2);
+  border: 4px solid #d4af37;
+}
+
+.hero-img-placeholder {
+  width: 100%;
+  max-width: 300px;
+  height: 260px;
+  background: linear-gradient(135deg, #800020, #4b1d24);
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #d4af37;
+  border: 4px solid #d4af37;
+}
+
+.hero-img-placeholder span {
+  font-size: 4rem;
+}
+
+.hero-img-placeholder p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ——— Stats ——— */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: linear-gradient(135deg, #800020 0%, #4b1d24 100%);
+}
+
+.hero-stat {
+  padding: 2rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+.hero-stat:last-child {
+  border-right: none;
+}
+
+.hero-stat:hover {
+  background-color: rgba(212, 175, 55, 0.15);
+}
+
+.hero-stat strong {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #d4af37;
+}
+
+.hero-stat span {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 900px) {
+  .hero-banner {
+    height: 400px;
+  }
+
+  .hero-banner-titulo {
+    font-size: 2.4rem;
+  }
+
+  .hero-descripcion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-imagen-lateral {
+    order: -1;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+
+@media (max-width: 580px) {
+  .hero-banner {
+    height: 320px;
+  }
+
+  .hero-banner-titulo {
+    font-size: 1.8rem;
+  }
+
+  .hero-banner-contenido {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-descripcion-wrapper {
+    padding: 2rem 1.25rem;
+  }
+}
