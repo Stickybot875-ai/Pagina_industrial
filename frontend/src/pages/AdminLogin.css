@@ -1,0 +1,95 @@
+.admin-login-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4b1d24 0%, #800020 60%, #d4af37 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.admin-login-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-login-header h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #800020;
+  margin: 0 0 0.35rem;
+}
+
+.admin-login-header p {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.admin-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b1d24;
+}
+
+.admin-field input {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.admin-field input:focus {
+  border-color: #800020;
+}
+
+.admin-login-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
+}
+
+.admin-login-btn {
+  padding: 0.8rem;
+  background: #800020;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.3rem;
+}
+
+.admin-login-btn:hover:not(:disabled) {
+  background: #4b1d24;
+}
+
+.admin-login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
