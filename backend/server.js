@@ -1,29 +1,33 @@
 import express from "express";
 import cors from "cors";
-import mysql from "mysql2/promise";
 import dotenv from "dotenv";
-import fetch from "node-fetch"; // En Node 18+ ya existe fetch nativo
+import fetch from "node-fetch";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import multer from "multer";
+import path from "path";
+import pool from "./db.js"; // ✅ ESTE ES EL QUE SE USA
+import ExcelJS from "exceljs";
+
 dotenv.config();
+
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage });
 
 const JWT_SECRET = process.env.JWT_SECRET || "pa_industrial_secret_2025";
 const app = express();
 const PORT = process.env.PORT || 5001;
-// ======================
-// 📌 Pool de MySQL
-// ======================
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASS || "",
-  database: process.env.DB_NAME || "industrialsql",
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
+
 // ======================
 // 📌 Test conexión MySQL
 // ======================
@@ -35,7 +39,6 @@ const testConexion = async () => {
     console.error("❌ Error de conexión MySQL:", error);
   }
 };
-import ExcelJS from "exceljs";
 
 // ======================
 // 📌 Middleware Admin JWT
@@ -357,7 +360,7 @@ app.post("/api/alumno", async (req, res) => {
       tallaPlayera,
       tallaChaleco,
     ]);
-        await pool.query(
+    await pool.query(
       "UPDATE talleres SET cupo = cupo + 1 WHERE Nombre = ? AND cupo < 25",
       [tallerElegir]
     );
@@ -366,7 +369,7 @@ app.post("/api/alumno", async (req, res) => {
       VALUES (?, ?)
     `;
     await pool.query(validacion, [numeroControl, true]);
-  
+
 
 
 
@@ -457,7 +460,7 @@ app.get("/api/login", async (req, res) => {
     if (rows.length === 0) {
       return res.json({ mensaje: "Credenciales inválidas" });
     }
-        const [cursos] = await pool.query(
+    const [cursos] = await pool.query(
       "SELECT * FROM talleres WHERE cupo < 25"
     );
     const [validacion] = await pool.query(
@@ -544,6 +547,56 @@ app.post("/api/enviar", async (req, res) => {
     });
   }
 });
+
+// ======================
+// 📌 PRODUCTOS CIENTÍFICOS
+// ======================
+
+// Crear producto + PDF
+app.post("/api/productos", upload.single("pdf"), async (req, res) => {
+  try {
+    const { titulo, autores, anio, resumen, tipo } = req.body;
+    const pdf = req.file ? req.file.filename : null;
+
+    const sql = `
+  INSERT INTO productos_cientificos 
+  (titulo, autores, anio, resumen, pdf, tipo)
+  VALUES (?, ?, ?, ?, ?, ?)
+`;
+
+    await pool.query(sql, [titulo, autores, anio, resumen, pdf, tipo]);
+
+    res.json({ mensaje: "Producto guardado correctamente" });
+  } catch (error) {
+    console.error("Error al guardar producto:", error);
+    res.status(500).json({ mensaje: "Error al guardar producto" });
+  }
+});
+
+// Obtener productos
+app.get("/api/productos", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM productos_cientificos ORDER BY id DESC");
+    res.json(rows);
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+    res.status(500).json({ mensaje: "Error al obtener productos" });
+  }
+});
+
+app.delete("/api/productos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await pool.query("DELETE FROM productos_cientificos WHERE id = ?", [id]);
+
+    res.json({ mensaje: "Producto eliminado correctamente" });
+  } catch (error) {
+    console.error("Error al eliminar producto:", error);
+    res.status(500).json({ mensaje: "Error al eliminar producto" });
+  }
+});
+
 // ======================
 // 📌 Iniciar servidor
 // ======================

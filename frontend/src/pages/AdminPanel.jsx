@@ -168,6 +168,23 @@ export default function AdminPanel() {
   const [modo, setModo] = useState(null); // null | "crear" | { editar: item }
   const [msg, setMsg] = useState("");
   const [cargando, setCargando] = useState(false);
+  const [titulo, setTitulo] = useState("");
+  const [tipo, setTipo] = useState("articulo");
+  const [autores, setAutores] = useState("");
+  const [anio, setAnio] = useState("");
+  const [resumen, setResumen] = useState("");
+  const [archivoPDF, setArchivoPDF] = useState(null);
+  const [productos, setProductos] = useState([]);
+
+  const cargarProductos = () => {
+    fetch("http://localhost:5001/api/productos")
+      .then(res => res.json())
+      .then(data => setProductos(data));
+  };
+
+  useEffect(() => {
+    cargarProductos();
+  }, []);
 
   useEffect(() => {
     cargarSemanas();
@@ -178,13 +195,13 @@ export default function AdminPanel() {
     fetch(`${API}/api/semanas`)
       .then((r) => r.json())
       .then(setSemanas)
-      .catch(() => {});
+      .catch(() => { });
 
   const cargarVisitas = () =>
     fetch(`${API}/api/visitas`)
       .then((r) => r.json())
       .then(setVisitas)
-      .catch(() => {});
+      .catch(() => { });
 
   const cerrarSesion = () => {
     localStorage.removeItem("admin_token");
@@ -259,6 +276,49 @@ export default function AdminPanel() {
     cargarVisitas();
   };
 
+  const subirProducto = async () => {
+    if (!archivoPDF) return alert("Selecciona un PDF");
+
+    const formData = new FormData();
+    formData.append("titulo", titulo);
+    formData.append("autores", autores);
+    formData.append("anio", anio);
+    formData.append("resumen", resumen);
+    formData.append("pdf", archivoPDF);
+    formData.append("tipo", tipo);
+
+    const res = await fetch("http://localhost:5001/api/productos", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    alert(data.mensaje);
+
+    // 🔥 LIMPIAR FORMULARIO
+    setTitulo("");
+    setAutores("");
+    setAnio("");
+    setResumen("");
+    setArchivoPDF(null);
+    setTipo("articulo");
+
+    cargarProductos();
+  };
+
+  const eliminarProducto = async (id) => {
+    if (!confirm("¿Eliminar este producto?")) return;
+
+    await fetch(`http://localhost:5001/api/productos/${id}`, {
+      method: "DELETE",
+    });
+
+    alert("Producto eliminado");
+
+    // recargar lista
+    cargarProductos();
+  };
+
   return (
     <div className="ap-layout">
       {/* Sidebar */}
@@ -268,6 +328,7 @@ export default function AdminPanel() {
           <p>Panel Admin</p>
         </div>
         <nav className="ap-nav">
+
           <button
             className={`ap-nav-item${seccion === "semanas" ? " active" : ""}`}
             onClick={() => { setSeccion("semanas"); setModo(null); }}
@@ -279,6 +340,12 @@ export default function AdminPanel() {
             onClick={() => { setSeccion("visitas"); setModo(null); }}
           >
             🏗️ Visitas Industriales
+          </button>
+          <button
+            className={`ap-nav-item${seccion === "productos" ? " active" : ""}`}
+            onClick={() => { setSeccion("productos"); setModo(null); }}
+          >
+            📄 Productos Científicos
           </button>
         </nav>
         <div className="ap-sidebar-footer">
@@ -421,6 +488,77 @@ export default function AdminPanel() {
                       Eliminar
                     </button>
                   </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {seccion === "productos" && (
+          <>
+            <div className="ap-section-header">
+              <h2>Productos Científicos</h2>
+            </div>
+
+            <div className="ap-form-box">
+              <h3>Subir nuevo producto</h3>
+
+              <div className="ap-form">
+                <div className="ap-field">
+                  <label>Título</label>
+                  <input onChange={(e) => setTitulo(e.target.value)} />
+                </div>
+
+                <div className="ap-field">
+                  <label>Autores</label>
+                  <input onChange={(e) => setAutores(e.target.value)} />
+                </div>
+
+                <div className="ap-field">
+                  <label>Año</label>
+                  <input type="number" onChange={(e) => setAnio(e.target.value)} />
+                </div>
+
+                <div className="ap-field">
+                  <label>Resumen</label>
+                  <textarea onChange={(e) => setResumen(e.target.value)} />
+                </div>
+
+                <div className="ap-field">
+                  <label>Tipo</label>
+                  <select onChange={(e) => setTipo(e.target.value)}>
+                    <option value="articulo">Artículo Científico</option>
+                    <option value="libro">Libro</option>
+                    <option value="informe">Informe</option>
+                  </select>
+                </div>
+
+                <div className="ap-field">
+                  <label>PDF</label>
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e) => setArchivoPDF(e.target.files[0])}
+                  />
+                </div>
+
+                <button className="ap-btn ap-btn-primary" onClick={subirProducto}>
+                  Subir PDF
+                </button>
+              </div>
+            </div>
+            <div style={{ marginTop: "30px" }}>
+              <h3>Productos subidos</h3>
+
+              {productos.map((p) => (
+                <div key={p.id} style={{ marginBottom: "10px" }}>
+                  <strong>{p.titulo}</strong> ({p.tipo})
+
+                  <button
+                    style={{ marginLeft: "10px", background: "red", color: "white" }}
+                    onClick={() => eliminarProducto(p.id)}
+                  >
+                    Eliminar
+                  </button>
                 </div>
               ))}
             </div>
